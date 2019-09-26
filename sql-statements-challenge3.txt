@@ -1,2 +1,5 @@
 Answer to Question 1: select * from action_table where start_date = (select MIN(start_date) from action_table);
 Answer to Question 2: SELECT id, ANY_VALUE(start_Date), ANY_VALUE(action_type)  FROM action_table  group by id;
+Answer to Question 3: select g1.id, g1.start_Date as start_date, g1.action_type, g2.start_Date as following_day 
+                             from action_table g1 inner join action_table g2 on g1.id = g2.id 
+                             where day(g2.start_Date) = (day(g1.start_Date)+1);
